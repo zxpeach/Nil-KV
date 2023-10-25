@@ -1,14 +1,14 @@
 package lsm
 
 import (
-	"github.com/whuanle/lsm/sortTree"
-	"github.com/whuanle/lsm/ssTable"
-	"github.com/whuanle/lsm/wal"
+	"github.com/zxpeach/Lsm-Tree/skipList"
+	"github.com/zxpeach/Lsm-Tree/ssTable"
+	"github.com/zxpeach/Lsm-Tree/wal"
 )
 
 type Database struct {
 	// 内存表
-	MemoryTree *sortTree.Tree
+	MemoryTree *skipList.SkipList
 	// SSTable 列表
 	TableTree *ssTable.TableTree
 	// WalF 文件句柄

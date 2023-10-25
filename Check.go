@@ -1,7 +1,7 @@
 package lsm
 
 import (
-	"github.com/whuanle/lsm/config"
+	"github.com/zxpeach/Lsm-Tree/config"
 	"log"
 	"time"
 )

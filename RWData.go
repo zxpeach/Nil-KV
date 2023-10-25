@@ -2,7 +2,7 @@ package lsm
 
 import (
 	"encoding/json"
-	"github.com/whuanle/lsm/kv"
+	"github.com/zxpeach/Lsm-Tree/kv"
 	"log"
 )
 

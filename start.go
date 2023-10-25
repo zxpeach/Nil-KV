@@ -1,9 +1,10 @@
 package lsm
 
 import (
-	"github.com/whuanle/lsm/config"
-	"github.com/whuanle/lsm/ssTable"
-	"github.com/whuanle/lsm/wal"
+	"github.com/zxpeach/Lsm-Tree/config"
+	"github.com/zxpeach/Lsm-Tree/skipList"
+	"github.com/zxpeach/Lsm-Tree/ssTable"
+	"github.com/zxpeach/Lsm-Tree/wal"
 	"log"
 	"os"
 )
@@ -33,7 +34,7 @@ func Start(con config.Config) {
 // 初始化 Database，从磁盘文件中还原 SSTable、WalF、内存表等
 func initDatabase(dir string) {
 	database = &Database{
-		MemoryTree: &skipList.skipList{},
+		MemoryTree: &skipList.SkipList{},
 		Wal:        &wal.Wal{},
 		TableTree:  &ssTable.TableTree{},
 	}

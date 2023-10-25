@@ -2,8 +2,8 @@ package ssTable
 
 import (
 	"encoding/json"
-	"github.com/whuanle/lsm/config"
-	"github.com/whuanle/lsm/kv"
+	"github.com/zxpeach/Lsm-Tree/config"
+	"github.com/zxpeach/Lsm-Tree/kv"
 	"log"
 	"os"
 	"sort"

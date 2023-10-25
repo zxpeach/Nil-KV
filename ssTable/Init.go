@@ -1,7 +1,7 @@
 package ssTable
 
 import (
-	"github.com/whuanle/lsm/config"
+	"github.com/zxpeach/Lsm-Tree/config"
 	"io/ioutil"
 	"log"
 	"path"

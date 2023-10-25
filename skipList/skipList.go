@@ -1,6 +1,6 @@
 package skipList
 
-import "github.com/whuanle/lsm/kv"
+import "github.com/zxpeach/Lsm-Tree/kv"
 
 import (
 	"sync"
@@ -13,7 +13,7 @@ type Node struct {
 }
 
 // skipList 跳表
-type skipList struct {
+type SkipList struct {
 	header *Node
 	count  int
 	rWLock *sync.RWMutex
