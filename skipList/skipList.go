@@ -139,6 +139,7 @@ func (list *SkipList) Set(key string, value []byte) (oldValue kv.Value, hasOld b
 	for checkUp() {
 		len++
 	}
+	list.count++
 	var element *Element = new(Element)
 	element.data.KV.Key = key
 	element.data.KV.Value = value
@@ -186,6 +187,7 @@ func (list *SkipList) Delete(key string) (oldValue kv.Value, hasOld bool) {
 			itor.levels[i].levels[i] = preElemHeaders[i]
 		}
 	} //旧数据由于不被指向会自动gc掉，不用管
+	list.count--
 	return *oldKV, true
 }
 

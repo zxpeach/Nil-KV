@@ -3,8 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"github.com/whuanle/lsm"
-	"github.com/whuanle/lsm/config"
+	"github.com/zxpeach/Lsm-Tree"
+	"github.com/zxpeach/Lsm-Tree/config"
 	"os"
 	"time"
 )
@@ -58,7 +58,7 @@ func insert() {
 		C: 3,
 		D: "00000000000000000000000000000000000000",
 	}
-	
+
 	//testVData, _ := json.Marshal(testV)
 	//// 131 个字节
 	//kvData, _ := kv.Encode(kv.Value{
