@@ -14,6 +14,8 @@ type Config struct {
 	Threshold int
 	// 压缩内存、文件的时间间隔，多久进行一次检查工作
 	CheckInterval int
+	// bloomfilter 容量
+	//bloomNum int
 }
 
 var once *sync.Once = &sync.Once{}

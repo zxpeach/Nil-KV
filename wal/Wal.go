@@ -20,11 +20,11 @@ type Wal struct {
 }
 
 func (w *Wal) Init(dir string) *skipList.SkipList {
-	log.Println("Loading wal.log...")
+	log.Println("LSM-TREE: Loading wal.log...")
 	start := time.Now()
 	defer func() {
 		elapse := time.Since(start)
-		log.Println("Loaded wal.log,Consumption of time : ", elapse)
+		log.Println("LSM-TREE: Loaded wal.log,Consumption of time : ", elapse)
 	}()
 
 	walPath := path.Join(dir, "wal.log")

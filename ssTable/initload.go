@@ -12,11 +12,11 @@ import (
 
 // 加载一个 db 文件到 TableTree 中
 func (tree *TableTree) loadDbFile(path string) {
-	log.Println("Loading the ", path)
+	log.Println("LSM-TREE: Loading the ", path)
 	start := time.Now()
 	defer func() {
 		elapse := time.Since(start)
-		log.Println("Loading the ", path, ",Consumption of time : ", elapse)
+		log.Println("LSM-TREE: Loading the ", path, ",Consumption of time : ", elapse)
 	}()
 
 	level, index, err := getLevel(filepath.Base(path))
@@ -60,7 +60,7 @@ func (table *SSTable) loadFileHandle() {
 		// 以只读的形式打开文件
 		f, err := os.OpenFile(table.filePath, os.O_RDONLY, 0666)
 		if err != nil {
-			log.Println(" error open file ", table.filePath)
+			log.Println("LSM-TREE:  error open file ", table.filePath)
 			panic(err)
 		}
 
@@ -76,11 +76,11 @@ func (table *SSTable) loadSparseIndex() {
 	// 加载稀疏索引区
 	bytes := make([]byte, table.tableMetaInfo.indexLen)
 	if _, err := table.f.Seek(table.tableMetaInfo.indexStart, 0); err != nil {
-		log.Println(" error open file ", table.filePath)
+		log.Println("LSM-TREE:  error open file ", table.filePath)
 		panic(err)
 	}
 	if _, err := table.f.Read(bytes); err != nil {
-		log.Println(" error open file ", table.filePath)
+		log.Println("LSM-TREE:  error open file ", table.filePath)
 		panic(err)
 	}
 
@@ -88,7 +88,7 @@ func (table *SSTable) loadSparseIndex() {
 	table.sparseIndex = make(map[string]Position)
 	err := json.Unmarshal(bytes, &table.sparseIndex)
 	if err != nil {
-		log.Println(" error open file ", table.filePath)
+		log.Println("LSM-TREE:  error open file ", table.filePath)
 		panic(err)
 	}
 	_, _ = table.f.Seek(0, 0)
@@ -107,41 +107,41 @@ func (table *SSTable) loadMetaInfo() {
 	f := table.f
 	_, err := f.Seek(0, 0)
 	if err != nil {
-		log.Println(" error open file ", table.filePath)
+		log.Println("LSM-TREE:  error open file ", table.filePath)
 		panic(err)
 	}
 	info, _ := f.Stat()
 	_, err = f.Seek(info.Size()-8*5, 0)
 	if err != nil {
-		log.Println("Error reading metadata ", table.filePath)
+		log.Println("LSM-TREE: Error reading metadata ", table.filePath)
 		panic(err)
 	}
 	_ = binary.Read(f, binary.LittleEndian, &table.tableMetaInfo.version)
 
 	_, err = f.Seek(info.Size()-8*4, 0)
 	if err != nil {
-		log.Println("Error reading metadata ", table.filePath)
+		log.Println("LSM-TREE: Error reading metadata ", table.filePath)
 		panic(err)
 	}
 	_ = binary.Read(f, binary.LittleEndian, &table.tableMetaInfo.dataStart)
 
 	_, err = f.Seek(info.Size()-8*3, 0)
 	if err != nil {
-		log.Println("Error reading metadata ", table.filePath)
+		log.Println("LSM-TREE: Error reading metadata ", table.filePath)
 		panic(err)
 	}
 	_ = binary.Read(f, binary.LittleEndian, &table.tableMetaInfo.dataLen)
 
 	_, err = f.Seek(info.Size()-8*2, 0)
 	if err != nil {
-		log.Println("Error reading metadata ", table.filePath)
+		log.Println("LSM-TREE: Error reading metadata ", table.filePath)
 		panic(err)
 	}
 	_ = binary.Read(f, binary.LittleEndian, &table.tableMetaInfo.indexStart)
 
 	_, err = f.Seek(info.Size()-8*1, 0)
 	if err != nil {
-		log.Println("Error reading metadata ", table.filePath)
+		log.Println("LSM-TREE: Error reading metadata ", table.filePath)
 		panic(err)
 	}
 	_ = binary.Read(f, binary.LittleEndian, &table.tableMetaInfo.indexLen)

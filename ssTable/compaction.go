@@ -33,11 +33,11 @@ func (tree *TableTree) majorCompaction() {
 
 // 压缩当前层的文件到下一层，只能被 majorCompaction() 调用
 func (tree *TableTree) majorCompactionLevel(level int) {
-	log.Println("Compressing layer ", level, " files")
+	log.Println("LSM-TREE: Compressing layer ", level, " files")
 	start := time.Now()
 	defer func() {
 		elapse := time.Since(start)
-		log.Println("Completed compression,consumption of time : ", elapse)
+		log.Println("LSM-TREE: Completed compression,consumption of time : ", elapse)
 	}()
 
 	log.Printf("Compressing layer %d.db files\r\n", level)
@@ -59,11 +59,11 @@ func (tree *TableTree) majorCompactionLevel(level int) {
 		newSlice := tableCache[0:table.tableMetaInfo.dataLen]
 		// 读取 SSTable 的数据区
 		if _, err := table.f.Seek(0, 0); err != nil {
-			log.Println(" error open file ", table.filePath)
+			log.Println("LSM-TREE:  error open file ", table.filePath)
 			panic(err)
 		}
 		if _, err := table.f.Read(newSlice); err != nil {
-			log.Println(" error read file ", table.filePath)
+			log.Println("LSM-TREE:  error read file ", table.filePath)
 			panic(err)
 		}
 		// 读取每一个元素
@@ -108,12 +108,12 @@ func (tree *TableTree) clearLevel(oldNode *tableNode) {
 	for oldNode != nil {
 		err := oldNode.table.f.Close()
 		if err != nil {
-			log.Println(" error close file,", oldNode.table.filePath)
+			log.Println("LSM-TREE:  error close file,", oldNode.table.filePath)
 			panic(err)
 		}
 		err = os.Remove(oldNode.table.filePath)
 		if err != nil {
-			log.Println(" error delete file,", oldNode.table.filePath)
+			log.Println("LSM-TREE:  error delete file,", oldNode.table.filePath)
 			panic(err)
 		}
 		oldNode.table.f = nil

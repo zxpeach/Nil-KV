@@ -15,6 +15,9 @@ func (table *SSTable) Search(key string) (value kv.Value, result kv.SearchResult
 	var position = Position{
 		Start: -1,
 	}
+	if table.bloomfilter.Check(value.Key) == false {
+		return kv.Value{}, kv.None
+	}
 	l := 0
 	r := len(table.sortIndex) - 1
 

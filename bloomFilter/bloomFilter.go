@@ -13,7 +13,7 @@ type BloomFilter struct {
 	data []uint64 // bitset本体
 }
 
-func calcHash(b []byte, seed uint32) uint32 {
+func calcHash(b string, seed uint32) uint32 {
 	res := uint32(0)
 	for c := range b {
 		res *= seed
@@ -30,7 +30,7 @@ func max(a int, b int) int {
 	}
 	return b
 }
-func (a *BloomFilter) init(n int, p float64) {
+func (a *BloomFilter) Init(n int, p float64) {
 	a.len = uint32(calcLen(n, p))
 	a.k = max(1, int(0.69*float64(a.len)/float64(n)))
 	a.seed = make([]uint32, a.k)
@@ -41,14 +41,14 @@ func (a *BloomFilter) init(n int, p float64) {
 	a.data = make([]uint64, a.size)
 }
 
-func (a *BloomFilter) Insert(s []byte) {
+func (a *BloomFilter) Insert(s string) {
 	for i := 0; i < a.k; i++ {
 		key := calcHash(s, a.seed[i]) % a.len
 		a.data[key/64] |= 1 << (key & 63)
 	}
 }
 
-func (a *BloomFilter) Check(s []byte) bool {
+func (a *BloomFilter) Check(s string) bool {
 	for i := 0; i < a.k; i++ {
 		key := calcHash(s, a.seed[i]) % a.len
 		if a.data[key/64]>>(key&63)&1 != 1 {
