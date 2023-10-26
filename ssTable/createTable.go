@@ -27,7 +27,7 @@ func (tree *TableTree) createTable(values []kv.Value, level int) *SSTable {
 	for _, value := range values {
 		data, err := kv.Encode(value)
 		if err != nil {
-			log.Println("Failed to insert Key: ", value.Key, err)
+			log.Println("Nil-KV : Failed to insert Key: ", value.Key, err)
 			continue
 		}
 		keys = append(keys, value.Key)
@@ -46,7 +46,7 @@ func (tree *TableTree) createTable(values []kv.Value, level int) *SSTable {
 	// map[string]Position to json
 	indexArea, err := json.Marshal(positions)
 	if err != nil {
-		log.Fatal("An SSTable file cannot be created,", err)
+		log.Fatal("Nil-KV : An SSTable file cannot be created,", err)
 	}
 
 	// 生成 MetaInfo
@@ -75,7 +75,7 @@ func (tree *TableTree) createTable(values []kv.Value, level int) *SSTable {
 	// 以只读的形式打开文件
 	f, err := os.OpenFile(table.filePath, os.O_RDONLY, 0666)
 	if err != nil {
-		log.Println(" error open file ", table.filePath)
+		log.Println("Nil-KV :  error open file ", table.filePath)
 		panic(err)
 	}
 	table.f = f

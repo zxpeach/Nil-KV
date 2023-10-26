@@ -20,17 +20,17 @@ type Wal struct {
 }
 
 func (w *Wal) Init(dir string) *skipList.SkipList {
-	log.Println("LSM-TREE: Loading wal.log...")
+	log.Println("Nil-KV : Loading wal.log...")
 	start := time.Now()
 	defer func() {
 		elapse := time.Since(start)
-		log.Println("LSM-TREE: Loaded wal.log,Consumption of time : ", elapse)
+		log.Println("Nil-KV : Loaded wal.log,Consumption of time : ", elapse)
 	}()
 
 	walPath := path.Join(dir, "wal.log")
 	f, err := os.OpenFile(walPath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
-		log.Println("The wal.log file cannot be created")
+		log.Println("Nil-KV : The wal.log file cannot be created")
 		panic(err)
 	}
 	w.f = f
@@ -56,14 +56,14 @@ func (w *Wal) WalToMemory() *skipList.SkipList {
 
 	_, err := w.f.Seek(0, 0)
 	if err != nil {
-		log.Println("LSM-TREE: Failed to open wal.log")
+		log.Println("Nil-KV : Failed to open wal.log")
 		panic(err)
 	}
 	// 文件指针移动到最后，以便追加
 	defer func(f *os.File, offset int64, whence int) {
 		_, err := f.Seek(offset, whence)
 		if err != nil {
-			log.Println("LSM-TREE: Failed to open wal.log")
+			log.Println("Nil-KV : Failed to open wal.log")
 			panic(err)
 		}
 	}(w.f, size-1, 0)
@@ -72,7 +72,7 @@ func (w *Wal) WalToMemory() *skipList.SkipList {
 	data := make([]byte, size)
 	_, err = w.f.Read(data)
 	if err != nil {
-		log.Println("LSM-TREE: Failed to open wal.log")
+		log.Println("Nil-KV : Failed to open wal.log")
 		panic(err)
 	}
 
@@ -85,7 +85,7 @@ func (w *Wal) WalToMemory() *skipList.SkipList {
 		buf := bytes.NewBuffer(indexData)
 		err := binary.Read(buf, binary.LittleEndian, &dataLen)
 		if err != nil {
-			log.Println("LSM-TREE: Failed to open wal.log")
+			log.Println("Nil-KV : Failed to open wal.log")
 			panic(err)
 		}
 		// 将元素的所有字节读取出来，并还原为 kv.Value
@@ -94,7 +94,7 @@ func (w *Wal) WalToMemory() *skipList.SkipList {
 		var value kv.Value
 		err = json.Unmarshal(dataArea, &value)
 		if err != nil {
-			log.Println("LSM-TREE: Failed to open wal.log")
+			log.Println("Nil-KV : Failed to open wal.log")
 			panic(err)
 		}
 
@@ -115,21 +115,21 @@ func (w *Wal) Write(value kv.Value) {
 	defer w.lock.Unlock()
 
 	if value.Deleted {
-		log.Println("LSM-TREE: wal.log:	delete ", value.Key)
+		log.Println("Nil-KV : wal.log:	delete ", value.Key)
 	} else {
-		log.Println("LSM-TREE: wal.log:	insert ", value.Key)
+		log.Println("Nil-KV : wal.log:	insert ", value.Key)
 	}
 
 	data, _ := json.Marshal(value)
 	err := binary.Write(w.f, binary.LittleEndian, int64(len(data)))
 	if err != nil {
-		log.Println("LSM-TREE: Failed to write the wal.log")
+		log.Println("Nil-KV : Failed to write the wal.log")
 		panic(err)
 	}
 
 	err = binary.Write(w.f, binary.LittleEndian, data)
 	if err != nil {
-		log.Println("LSM-TREE: Failed to write the wal.log")
+		log.Println("Nil-KV : Failed to write the wal.log")
 		panic(err)
 	}
 }
@@ -138,7 +138,7 @@ func (w *Wal) Reset() {
 	w.lock.Lock()
 	defer w.lock.Unlock()
 
-	log.Println("LSM-TREE: Resetting the wal.log file")
+	log.Println("Nil-KV : Resetting the wal.log file")
 
 	err := w.f.Close()
 	if err != nil {

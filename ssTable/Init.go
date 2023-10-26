@@ -13,11 +13,11 @@ var levelMaxSize []int
 
 // Init 初始化 TableTree
 func (tree *TableTree) Init(dir string) {
-	log.Println("LSM-TREE: The SSTable list are being loaded")
+	log.Println("Nil-KV : The SSTable list are being loaded")
 	start := time.Now()
 	defer func() {
 		elapse := time.Since(start)
-		log.Println("LSM-TREE: The SSTable list are being loaded,consumption of time : ", elapse)
+		log.Println("Nil-KV : The SSTable list are being loaded,consumption of time : ", elapse)
 	}()
 
 	// 初始化每一层 SSTable 的文件总最大值
@@ -38,7 +38,7 @@ func (tree *TableTree) Init(dir string) {
 	tree.lock = &sync.RWMutex{}
 	infos, err := ioutil.ReadDir(dir)
 	if err != nil {
-		log.Println("LSM-TREE: Failed to read the database file")
+		log.Println("Nil-KV : Failed to read the database file")
 		panic(err)
 	}
 	for _, info := range infos {

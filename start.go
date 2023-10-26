@@ -40,10 +40,10 @@ func initDatabase(dir string) {
 	// 从磁盘文件中恢复数据
 	// 如果目录不存在，则为空数据库
 	if _, err := os.Stat(dir); err != nil {
-		log.Printf("LSM-TREE: The %s directory does not exist. The directory is being created\r\n", dir)
+		log.Printf("Nil-KV : The %s directory does not exist. The directory is being created\r\n", dir)
 		err := os.Mkdir(dir, 0666)
 		if err != nil {
-			log.Println("LSM-TREE: Failed to create the database directory")
+			log.Println("Nil-KV : Failed to create the database directory")
 			panic(err)
 		}
 	}
@@ -52,6 +52,6 @@ func initDatabase(dir string) {
 	memoryTree := database.Wal.Init(dir)
 
 	database.MemoryTree = memoryTree
-	log.Println("LSM-TREE: Loading database...")
+	log.Println("Nil-KV : Loading database...")
 	database.TableTree.Init(dir)
 }

@@ -6,8 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="1076ad43-0464-4df6-90f1-04272b4db1db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bloomFilter/bloomFilter.go" beforeDir="false" afterPath="$PROJECT_DIR$/bloomFilter/bloomFilter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssTable/SsTable.go" beforeDir="false" afterPath="$PROJECT_DIR$/ssTable/SsTable.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Check.go" beforeDir="false" afterPath="$PROJECT_DIR$/Check.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RWData.go" beforeDir="false" afterPath="$PROJECT_DIR$/RWData.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ssTable/Init.go" beforeDir="false" afterPath="$PROJECT_DIR$/ssTable/Init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ssTable/compaction.go" beforeDir="false" afterPath="$PROJECT_DIR$/ssTable/compaction.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ssTable/createTable.go" beforeDir="false" afterPath="$PROJECT_DIR$/ssTable/createTable.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ssTable/dbFile.go" beforeDir="false" afterPath="$PROJECT_DIR$/ssTable/dbFile.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ssTable/initload.go" beforeDir="false" afterPath="$PROJECT_DIR$/ssTable/initload.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start.go" beforeDir="false" afterPath="$PROJECT_DIR$/start.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wal/Wal.go" beforeDir="false" afterPath="$PROJECT_DIR$/wal/Wal.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

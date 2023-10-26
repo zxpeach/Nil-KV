@@ -8,7 +8,7 @@ import (
 
 // Get 获取一个元素
 func Get[T any](key string) (T, bool) {
-	log.Print("LSM-TREE: Get ", key)
+	log.Print("Nil-KV : Get ", key)
 	// 先查内存表
 	value, result := database.MemoryTree.Search(key)
 
@@ -29,7 +29,7 @@ func Get[T any](key string) (T, bool) {
 
 // Set 插入元素
 func Set[T any](key string, value T) bool {
-	log.Print("LSM-TREE: Insert ", key, ",")
+	log.Print("Nil-KV : Insert ", key, ",")
 	data, err := kv.Convert(value)
 	if err != nil {
 		log.Println(err)
@@ -50,7 +50,7 @@ func Set[T any](key string, value T) bool {
 // DeleteAndGet 删除元素并尝试获取旧的值，
 // 返回的 bool 表示是否有旧值，不表示是否删除成功
 func DeleteAndGet[T any](key string) (T, bool) {
-	log.Print("LSM-TREE: Delete ", key)
+	log.Print("Nil-KV : Delete ", key)
 	value, success := database.MemoryTree.Delete(key)
 
 	if success {
@@ -68,7 +68,7 @@ func DeleteAndGet[T any](key string) (T, bool) {
 
 // Delete 删除元素
 func Delete[T any](key string) {
-	log.Print("LSM-TREE: LSM-TREE: Delete ", key)
+	log.Print("Nil-KV : LSM-TREE: Delete ", key)
 	database.MemoryTree.Delete(key)
 	database.Wal.Write(kv.Value{
 		Key:     key,
