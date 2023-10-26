@@ -9,6 +9,7 @@ import (
 // Get 获取一个元素
 func Get[T any](key string) (T, bool) {
 	log.Print("Nil-KV : Get ", key)
+	//todo: 添加Windows-tinyLFU缓存命中模块，狠狠加速
 	// 先查内存表
 	value, result := database.MemoryTree.Search(key)
 

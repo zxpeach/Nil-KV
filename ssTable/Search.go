@@ -43,17 +43,17 @@ func (table *SSTable) Search(key string) (value kv.Value, result kv.SearchResult
 		return kv.Value{}, kv.None
 	}
 	// 从磁盘文件中查找
-	bytes := make([]byte, position.Len)
-	if _, err := table.f.Seek(position.Start, 0); err != nil {
+	bytes := make([]byte, position.Len)                        //地址
+	if _, err := table.f.Seek(position.Start, 0); err != nil { //设置读起始位置
 		log.Println(err)
 		return kv.Value{}, kv.None
 	}
-	if _, err := table.f.Read(bytes); err != nil {
+	if _, err := table.f.Read(bytes); err != nil { //开读
 		log.Println(err)
 		return kv.Value{}, kv.None
 	}
 
-	value, err := kv.Decode(bytes)
+	value, err := kv.Decode(bytes) //反序列化
 	if err != nil {
 		log.Println(err)
 		return kv.Value{}, kv.None

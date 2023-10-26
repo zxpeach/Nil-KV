@@ -40,7 +40,7 @@ func (tree *TableTree) createTable(values []kv.Value, level int) *SSTable {
 		}
 		dataArea = append(dataArea, data...)
 	}
-	sort.Strings(keys)
+	sort.Strings(keys) //暴力sort
 
 	// 生成稀疏索引区
 	// map[string]Position to json
