@@ -1,7 +1,7 @@
 package ssTable
 
 import (
-	"github.com/zxpeach/Lsm-Tree/bloomFilter"
+	"github.com/zxpeach/Nil-KV/bloomFilter"
 	"os"
 	"sync"
 )

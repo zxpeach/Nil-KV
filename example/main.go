@@ -3,8 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"github.com/zxpeach/Lsm-Tree"
-	"github.com/zxpeach/Lsm-Tree/config"
+	"github.com/zxpeach/Nil-KV"
+	"github.com/zxpeach/Nil-KV/config"
 	"os"
 	"time"
 )

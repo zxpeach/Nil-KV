@@ -1,9 +1,9 @@
 package lsm
 
 import (
-	"github.com/zxpeach/Lsm-Tree/skipList"
-	"github.com/zxpeach/Lsm-Tree/ssTable"
-	"github.com/zxpeach/Lsm-Tree/wal"
+	"github.com/zxpeach/Nil-KV/skipList"
+	"github.com/zxpeach/Nil-KV/ssTable"
+	"github.com/zxpeach/Nil-KV/wal"
 )
 
 type Database struct {

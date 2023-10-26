@@ -1,3 +1,3 @@
-module github.com/zxpeach/Lsm-Tree
+module github.com/zxpeach/Nil-KV
 
 go 1.18

@@ -2,9 +2,9 @@ package ssTable
 
 import (
 	"encoding/json"
-	"github.com/zxpeach/Lsm-Tree/bloomFilter"
-	"github.com/zxpeach/Lsm-Tree/config"
-	"github.com/zxpeach/Lsm-Tree/kv"
+	"github.com/zxpeach/Nil-KV/bloomFilter"
+	"github.com/zxpeach/Nil-KV/config"
+	"github.com/zxpeach/Nil-KV/kv"
 	"log"
 	"os"
 	"sort"

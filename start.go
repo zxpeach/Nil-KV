@@ -1,10 +1,10 @@
 package lsm
 
 import (
-	"github.com/zxpeach/Lsm-Tree/config"
-	"github.com/zxpeach/Lsm-Tree/skipList"
-	"github.com/zxpeach/Lsm-Tree/ssTable"
-	"github.com/zxpeach/Lsm-Tree/wal"
+	"github.com/zxpeach/Nil-KV/config"
+	"github.com/zxpeach/Nil-KV/skipList"
+	"github.com/zxpeach/Nil-KV/ssTable"
+	"github.com/zxpeach/Nil-KV/wal"
 	"log"
 	"os"
 )

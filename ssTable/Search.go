@@ -1,7 +1,7 @@
 package ssTable
 
 import (
-	"github.com/zxpeach/Lsm-Tree/kv"
+	"github.com/zxpeach/Nil-KV/kv"
 	"log"
 )
 

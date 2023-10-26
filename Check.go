@@ -1,7 +1,7 @@
 package lsm
 
 import (
-	"github.com/zxpeach/Lsm-Tree/config"
+	"github.com/zxpeach/Nil-KV/config"
 	"log"
 	"time"
 )

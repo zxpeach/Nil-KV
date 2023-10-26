@@ -1,9 +1,9 @@
 package ssTable
 
 import (
-	"github.com/zxpeach/Lsm-Tree/config"
-	"github.com/zxpeach/Lsm-Tree/kv"
-	"github.com/zxpeach/Lsm-Tree/skipList"
+	"github.com/zxpeach/Nil-KV/config"
+	"github.com/zxpeach/Nil-KV/kv"
+	"github.com/zxpeach/Nil-KV/skipList"
 	"log"
 	"os"
 	"time"

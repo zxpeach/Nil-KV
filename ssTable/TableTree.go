@@ -2,7 +2,7 @@ package ssTable
 
 import (
 	"fmt"
-	"github.com/zxpeach/Lsm-Tree/kv"
+	"github.com/zxpeach/Nil-KV/kv"
 	"sync"
 )
 
