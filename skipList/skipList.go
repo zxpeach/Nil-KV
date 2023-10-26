@@ -1,7 +1,6 @@
 package skipList
 
 import (
-	"fmt"
 	"github.com/zxpeach/Lsm-Tree/kv"
 	"log"
 	"math/rand"
@@ -36,7 +35,6 @@ func (list *SkipList) GetCount() int {
 }
 
 func (list *SkipList) Init() {
-	fmt.Println("skiplist init")
 	list.rWLock = &sync.RWMutex{}
 	var newkv *kv.Value
 	newNode := &Node{

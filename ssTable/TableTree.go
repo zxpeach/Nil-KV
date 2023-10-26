@@ -27,13 +27,13 @@ func (tree *TableTree) Search(key string) (kv.Value, kv.SearchResult) {
 
 	// 遍历每一层的 SSTable
 	for _, node := range tree.levels {
-		// 整理 SSTable 列表
+		// 获得 SSTable 元数据列表
 		tables := make([]*SSTable, 0)
 		for node != nil {
 			tables = append(tables, node.table)
 			node = node.next
 		}
-		// 查找的时候要从最后一个 SSTable 开始查找
+		// 从最后一个 SSTable 开始查找
 		for i := len(tables) - 1; i >= 0; i-- {
 			value, searchResult := tables[i].Search(key)
 			// 未找到，则查找下一个 SSTable 表

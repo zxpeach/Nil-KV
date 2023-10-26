@@ -1,6 +1,7 @@
 package ssTable
 
 import (
+	"github.com/zxpeach/Lsm-Tree/bloomFilter"
 	"os"
 	"sync"
 )
@@ -17,6 +18,8 @@ type SSTable struct {
 	// 排序后的 key 列表
 	sortIndex []string
 	// SSTable 只能使排他锁
+	bloomfilter bloomFilter.BloomFilter
+	// 布隆过滤器
 	lock sync.Locker
 	/*
 		sortIndex 是有序的，便于 CPU 缓存等，还可以使用布隆过滤器，有助于快速查找。
@@ -28,4 +31,5 @@ func (table *SSTable) Init(path string) {
 	table.filePath = path
 	table.lock = &sync.Mutex{}
 	table.loadFileHandle()
+	table.bloomfilter.init()
 }

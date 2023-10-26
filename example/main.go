@@ -26,7 +26,7 @@ func main() {
 		}
 	}()
 	lsm.Start(config.Config{
-		DataDir:       `E:\项目\lsm数据测试目录`,
+		DataDir:       `E:\test`,
 		Level0Size:    100,
 		PartSize:      4,
 		Threshold:     3000,
