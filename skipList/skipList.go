@@ -10,7 +10,7 @@ import (
 	"sync"
 )
 
-const MaxLevel int = 6
+const MaxLevel int = 30
 
 type Node struct {
 	KV kv.Value

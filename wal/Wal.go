@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"encoding/binary"
 	"encoding/json"
-	"github.com/whuanle/lsm/kv"
-	"github.com/whuanle/lsm/sortTree"
+	"github.com/zxpeach/Lsm-Tree/kv"
+	"github.com/zxpeach/Lsm-Tree/skipList"
 	"log"
 	"os"
 	"path"
@@ -19,7 +19,7 @@ type Wal struct {
 	lock sync.Locker
 }
 
-func (w *Wal) Init(dir string) *sortTree.Tree {
+func (w *Wal) Init(dir string) *skipList.SkipList {
 	log.Println("Loading wal.log...")
 	start := time.Now()
 	defer func() {
@@ -40,18 +40,18 @@ func (w *Wal) Init(dir string) *sortTree.Tree {
 }
 
 // 通过 wal.log 文件初始化 Wal，加载文件中的 WalF 到内存
-func (w *Wal) loadToMemory() *sortTree.Tree {
+func (w *Wal) loadToMemory() *skipList.SkipList {
 	w.lock.Lock()
 	defer w.lock.Unlock()
 
 	info, _ := os.Stat(w.path)
 	size := info.Size()
-	tree := &sortTree.Tree{}
-	tree.Init()
+	list := &skipList.SkipList{}
+	list.Init()
 
 	// 空的 wal.log
 	if size == 0 {
-		return tree
+		return list
 	}
 
 	_, err := w.f.Seek(0, 0)
@@ -99,14 +99,14 @@ func (w *Wal) loadToMemory() *sortTree.Tree {
 		}
 
 		if value.Deleted {
-			tree.Delete(value.Key)
+			list.Delete(value.Key)
 		} else {
-			tree.Set(value.Key, value.Value)
+			list.Set(value.Key, value.Value)
 		}
 		// 读取下一个元素
 		index = index + dataLen
 	}
-	return tree
+	return list
 }
 
 // 记录日志
