@@ -40,7 +40,7 @@ func (tree *TableTree) majorCompactionLevel(level int) {
 		log.Println("Nil-KV : Completed compression,consumption of time : ", elapse)
 	}()
 
-	log.Printf("Compressing layer %d.db files\r\n", level)
+	log.Printf("Nil-KV : Compressing layer %d.db files\r\n", level)
 	// 用于加载 一个 SSTable 的数据区到缓存中
 	tableCache := make([]byte, levelMaxSize[level])
 	currentNode := tree.levels[level]

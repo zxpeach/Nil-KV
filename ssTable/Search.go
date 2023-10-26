@@ -6,7 +6,7 @@ import (
 )
 
 // Search 查找元素，
-// 先使用二分查找法从内存中的 keys 列表查找 Key，如果存在，找到 Position ，再通过从数据区加载
+// 先从bloomfilter中查询是否有此key，存在则使用二分从内存中的 keys 列表查找 Key，如果存在，找到地址 ，再通过从数据区加载
 func (table *SSTable) Search(key string) (value kv.Value, result kv.SearchResult) {
 	table.lock.Lock()
 	defer table.lock.Unlock()
@@ -21,7 +21,7 @@ func (table *SSTable) Search(key string) (value kv.Value, result kv.SearchResult
 	l := 0
 	r := len(table.sortIndex) - 1
 
-	// 二分查找法，查找 key 是否存在
+	// 二分，查找 key 是否存在
 	for l <= r {
 		mid := (l + r) / 2
 		if table.sortIndex[mid] == key {
@@ -42,8 +42,6 @@ func (table *SSTable) Search(key string) (value kv.Value, result kv.SearchResult
 	if position.Start == -1 {
 		return kv.Value{}, kv.None
 	}
-
-	// Todo：如果读取失败，需要增加错误处理过程
 	// 从磁盘文件中查找
 	bytes := make([]byte, position.Len)
 	if _, err := table.f.Seek(position.Start, 0); err != nil {

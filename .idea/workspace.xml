@@ -7,6 +7,10 @@
     <list default="true" id="1076ad43-0464-4df6-90f1-04272b4db1db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database.go" beforeDir="false" afterPath="$PROJECT_DIR$/Database.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RWData.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/步骤.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ssTable/Search.go" beforeDir="false" afterPath="$PROJECT_DIR$/ssTable/Search.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ssTable/compaction.go" beforeDir="false" afterPath="$PROJECT_DIR$/ssTable/compaction.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wal/Wal.go" beforeDir="false" afterPath="$PROJECT_DIR$/wal/Wal.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
