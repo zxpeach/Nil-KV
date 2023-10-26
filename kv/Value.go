@@ -29,26 +29,26 @@ func (v *Value) Copy() *Value {
 	}
 }
 
-// Get 反序列化元素中的值
+// Get 反序列化
 func Get[T any](v *Value) (T, error) {
 	var value T
 	err := json.Unmarshal(v.Value, &value)
 	return value, err
 }
 
-// Convert 将值序列化为二进制
+// Convert 序列化为二进制
 func Convert[T any](value T) ([]byte, error) {
 	return json.Marshal(value)
 }
 
-// Decode 二进制数据反序列化为 Value
+// Decode 反序列化为 Value
 func Decode(data []byte) (Value, error) {
 	var value Value
 	err := json.Unmarshal(data, &value)
 	return value, err
 }
 
-// Encode 将 Value 序列化为二进制
+// Encode 将 Value 序列化
 func Encode(value Value) ([]byte, error) {
 	return json.Marshal(value)
 }

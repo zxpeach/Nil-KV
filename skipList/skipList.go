@@ -10,7 +10,7 @@ import (
 	"sync"
 )
 
-const MaxLevel int = 30
+const MaxLevel int = 31
 
 type Node struct {
 	KV kv.Value
@@ -138,6 +138,9 @@ func (list *SkipList) Set(key string, value []byte) (oldValue kv.Value, hasOld b
 	len := 0
 	for checkUp() {
 		len++
+		if len == MaxLevel-1 {
+			break
+		}
 	}
 	list.count++
 	var element *Element = new(Element)
