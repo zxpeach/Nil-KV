@@ -10,17 +10,18 @@ import (
 )
 
 // Start 启动！
-func Start(con config.Config) {
+func Start() {
+	con := database.con
 	if database != nil { // 已有数据库，返回
 		return
 	}
 	// 配置保存到内存中
-	log.Println("LSM-TREE: Loading a Configuration File")
+	log.Println("Nil-KV : Loading a Configuration File")
 	config.Init(con)
 	// 初始化
-	log.Println("LSM-TREE: Initializing the database")
+	log.Println("Nil-KV : Initializing the database")
 	// 启动前进行一次数据压缩
-	log.Println("LSM-TREE: Performing the data compression......")
+	log.Println("Nil-KV : Performing the data compression......")
 	initDatabase(con.DataDir)
 	// 检查内存
 	checkMemory()

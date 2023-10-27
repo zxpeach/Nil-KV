@@ -69,7 +69,7 @@ func DeleteAndGet[T any](key string) (T, bool) {
 
 // Delete 删除元素
 func Delete[T any](key string) {
-	log.Print("Nil-KV : LSM-TREE: Delete ", key)
+	log.Print("Nil-KV : Delete ", key)
 	database.MemoryTree.Delete(key)
 	database.Wal.Write(kv.Value{
 		Key:     key,

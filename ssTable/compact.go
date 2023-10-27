@@ -45,7 +45,7 @@ func (tree *TableTree) majorCompactionLevel(level int) {
 	tableCache := make([]byte, levelMaxSize[level])
 	currentNode := tree.levels[level]
 
-	// 将当前层的 SSTable 合并到一个有序二叉树中
+	// 将当前层的 SSTable 合并到一个随机化跳表中
 	memoryTree := &skipList.SkipList{}
 	memoryTree.Init()
 

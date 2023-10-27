@@ -20,7 +20,9 @@ func (tree *TableTree) CreateNewTable(values []kv.Value) {
 // 创建新的 SSTable，插入到合适的层
 func (tree *TableTree) createTable(values []kv.Value, level int) *SSTable {
 	// 生成数据区
+	con := config.GetConfig()
 	bloomfilter := &bloomFilter.BloomFilter{}
+	bloomfilter.Init(con.PartSize, 0.01)
 	keys := make([]string, 0, len(values))
 	positions := make(map[string]Position)
 	dataArea := make([]byte, 0)
@@ -67,7 +69,7 @@ func (tree *TableTree) createTable(values []kv.Value, level int) *SSTable {
 	}
 	index := tree.insert(table, level)
 	log.Printf("Create a new SSTable,level: %d ,index: %d\r\n", level, index)
-	con := config.GetConfig()
+	//con := config.GetConfig()
 	filePath := con.DataDir + "/" + strconv.Itoa(level) + "." + strconv.Itoa(index) + ".db"
 	table.filePath = filePath
 

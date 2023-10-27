@@ -156,6 +156,7 @@ func (list *SkipList) Set(key string, value []byte) (oldValue kv.Value, hasOld b
 }
 
 func (list *SkipList) Delete(key string) (oldValue kv.Value, hasOld bool) {
+	//todo:日记数据还是得打标记才行，不能直接删？？ 我是诺之
 	list.rWLock.Lock()
 	defer list.rWLock.Unlock()
 	var itor *Element
