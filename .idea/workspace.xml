@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1076ad43-0464-4df6-90f1-04272b4db1db" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database.go" beforeDir="false" afterPath="$PROJECT_DIR$/Database.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ssTable/SSTable.go" beforeDir="false" afterPath="$PROJECT_DIR$/ssTable/SSTable.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssTable/createTable.go" beforeDir="false" afterPath="$PROJECT_DIR$/ssTable/createTable.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssTable/dbFile.go" beforeDir="false" afterPath="$PROJECT_DIR$/ssTable/dbFile.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/test/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +64,7 @@
       <module name="Lsm-Tree" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="DIRECTORY" />
+      <package value="github.com/zxpeach/Nil-KV" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
