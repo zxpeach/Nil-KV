@@ -6,7 +6,7 @@
 git clone git@github.com:zxpeach/Nil-KV.git
 ```
 
-## 使用方法：
+使用方法：
 ```go
 package main
 
@@ -42,7 +42,7 @@ func main(){
 ```
 
 
-## 数据测试
+数据测试
 
 ```go
 package main
