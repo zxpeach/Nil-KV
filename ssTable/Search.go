@@ -18,6 +18,12 @@ func (table *SSTable) Search(key string) (value kv.Value, result kv.SearchResult
 	if table.bloomfilter.Check(value.Key) == false {
 		return kv.Value{}, kv.None
 	}
+
+	val, res := table.cache.Get(key)
+	if res == true {
+		return val, kv.Success
+	}
+
 	l := 0
 	r := len(table.sortIndex) - 1
 

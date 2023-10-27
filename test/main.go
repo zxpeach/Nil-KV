@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"github.com/zxpeach/Nil-KV"
+	"github.com/zxpeach/Nil-KV/config"
 	"os"
 	"time"
 )
@@ -24,6 +25,13 @@ func main() {
 			_, _ = inputReader.ReadString('\n')
 		}
 	}()
+	lsm.Opt(config.Config{
+		DataDir:       `E:\test`,
+		Level0Size:    100,
+		PartSize:      4,
+		Threshold:     3000,
+		CheckInterval: 3,
+	})
 	lsm.Start()
 	query()
 

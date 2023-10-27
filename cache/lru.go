@@ -3,6 +3,7 @@ package cache
 import (
 	"container/list"
 	"fmt"
+	"github.com/zxpeach/Nil-KV/kv"
 )
 
 type windowLRU struct {
@@ -15,7 +16,7 @@ type storeItem struct {
 	stage    int
 	key      uint64
 	conflict uint64
-	value    interface{}
+	value    kv.Value
 }
 
 func newWindowLRU(size int, data map[uint64]*list.Element) *windowLRU {

@@ -14,8 +14,9 @@ type (
 		Start() error
 		Set(key string, value []byte) error
 		Get(key string) (*kv.Value, error)
-		Del(key string) error
+		Delete(key string) error
 		Close() error
+		opt(con config.Config) error
 	}
 	Database struct {
 		con config.Config
@@ -27,6 +28,11 @@ type (
 		Wal *wal.Wal
 	}
 )
+
+// Opt 改设置
+func Opt(con config.Config) {
+	database.con = con
+}
 
 // 数据库，全局唯一实例
 var database *Database

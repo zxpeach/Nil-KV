@@ -33,7 +33,7 @@ func (tree *TableTree) GetLevelSize(level int) int64 {
 
 // 将数据写入文件
 func writeDataToFile(filePath string, dataArea []byte, indexArea []byte, meta MetaInfo) {
-	//todo: 可以换成更优的 mmap 读写文件
+	//todo: linux使用 mmap 读写文件
 	f, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE, 0666) //打开目录
 	if err != nil {
 		log.Fatal("Nil-KV :  error create file,", err)

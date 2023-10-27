@@ -5,21 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1076ad43-0464-4df6-90f1-04272b4db1db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/cache/bloom.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cache/cache.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cache/cache.s" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cache/cache_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cache/cmSketch.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cache/lru.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cache/s2lru.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/Controller.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database.go" beforeDir="false" afterPath="$PROJECT_DIR$/Database.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/skipList/skipList.go" beforeDir="false" afterPath="$PROJECT_DIR$/skipList/skipList.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssTable/compact.go" beforeDir="false" afterPath="$PROJECT_DIR$/ssTable/compact.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ssTable/SSTable.go" beforeDir="false" afterPath="$PROJECT_DIR$/ssTable/SSTable.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ssTable/createTable.go" beforeDir="false" afterPath="$PROJECT_DIR$/ssTable/createTable.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ssTable/dbFile.go" beforeDir="false" afterPath="$PROJECT_DIR$/ssTable/dbFile.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start.go" beforeDir="false" afterPath="$PROJECT_DIR$/start.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/test/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

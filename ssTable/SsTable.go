@@ -2,6 +2,7 @@ package ssTable
 
 import (
 	"github.com/zxpeach/Nil-KV/bloomFilter"
+	"github.com/zxpeach/Nil-KV/cache"
 	"os"
 	"sync"
 )
@@ -20,6 +21,8 @@ type SSTable struct {
 	// SSTable 排他锁
 	bloomfilter bloomFilter.BloomFilter
 	// 布隆过滤器
+	cache *cache.Cache
+	// windowtinyLFU
 	lock sync.Locker
 }
 

@@ -3,6 +3,7 @@ package ssTable
 import (
 	"encoding/json"
 	"github.com/zxpeach/Nil-KV/bloomFilter"
+	"github.com/zxpeach/Nil-KV/cache"
 	"github.com/zxpeach/Nil-KV/config"
 	"github.com/zxpeach/Nil-KV/kv"
 	"log"
@@ -21,6 +22,7 @@ func (tree *TableTree) CreateNewTable(values []kv.Value) {
 func (tree *TableTree) createTable(values []kv.Value, level int) *SSTable {
 	// 生成数据区
 	con := config.GetConfig()
+	Cache := cache.NewCache(con.PartSize)
 	bloomfilter := &bloomFilter.BloomFilter{}
 	bloomfilter.Init(con.PartSize, 0.01)
 	keys := make([]string, 0, len(values))
@@ -34,6 +36,7 @@ func (tree *TableTree) createTable(values []kv.Value, level int) *SSTable {
 		}
 		keys = append(keys, value.Key)
 		bloomfilter.Insert(value.Key)
+		Cache.Set(value.Key, value)
 		// 文件定位记录
 		positions[value.Key] = Position{
 			Start:   int64(len(dataArea)),
@@ -66,6 +69,7 @@ func (tree *TableTree) createTable(values []kv.Value, level int) *SSTable {
 		sortIndex:     keys,
 		lock:          &sync.RWMutex{},
 		bloomfilter:   *bloomfilter,
+		cache:         Cache,
 	}
 	index := tree.insert(table, level)
 	log.Printf("Create a new SSTable,level: %d ,index: %d\r\n", level, index)

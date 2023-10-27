@@ -2,6 +2,7 @@ package cache
 
 import (
 	"container/list"
+	"github.com/zxpeach/Nil-KV/kv"
 	"sync"
 	"unsafe"
 )
@@ -63,13 +64,13 @@ func NewCache(size int) *Cache {
 
 }
 
-func (c *Cache) Set(key interface{}, value interface{}) bool {
+func (c *Cache) Set(key string, value kv.Value) bool {
 	c.m.Lock()
 	defer c.m.Unlock()
 	return c.set(key, value)
 }
 
-func (c *Cache) set(key, value interface{}) bool {
+func (c *Cache) set(key string, value kv.Value) bool {
 	// keyHash 用来快速定位，conflice 用来判断冲突
 	keyHash, conflictHash := c.keyToHash(key)
 
@@ -119,13 +120,13 @@ func (c *Cache) set(key, value interface{}) bool {
 	return true
 }
 
-func (c *Cache) Get(key interface{}) (interface{}, bool) {
+func (c *Cache) Get(key string) (kv.Value, bool) {
 	c.m.RLock()
 	defer c.m.RUnlock()
 	return c.get(key)
 }
 
-func (c *Cache) get(key interface{}) (interface{}, bool) {
+func (c *Cache) get(key string) (kv.Value, bool) {
 	c.t++
 	if c.t == c.threshold {
 		c.c.Reset()
@@ -139,7 +140,7 @@ func (c *Cache) get(key interface{}) (interface{}, bool) {
 	if !ok {
 		c.door.Allow(uint32(keyHash))
 		c.c.Increment(keyHash)
-		return nil, false
+		return kv.Value{}, false
 	}
 
 	item := val.Value.(*storeItem)
@@ -147,7 +148,7 @@ func (c *Cache) get(key interface{}) (interface{}, bool) {
 	if item.conflict != conflictHash {
 		c.door.Allow(uint32(keyHash))
 		c.c.Increment(keyHash)
-		return nil, false
+		return kv.Value{}, false
 	}
 	c.door.Allow(uint32(keyHash))
 	c.c.Increment(item.key)
