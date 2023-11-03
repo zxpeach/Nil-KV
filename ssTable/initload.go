@@ -7,17 +7,11 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
-	"time"
 )
 
 // 加载一个 db 文件到 TableTree 中
 func (tree *TableTree) loadDbFile(path string) {
 	log.Println("Nil-KV : Loading the ", path)
-	start := time.Now()
-	defer func() {
-		elapse := time.Since(start)
-		log.Println("Nil-KV : Loading the ", path, ",Consumption of time : ", elapse)
-	}()
 
 	level, index, err := getLevel(filepath.Base(path))
 	if err != nil {

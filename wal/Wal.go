@@ -10,7 +10,6 @@ import (
 	"os"
 	"path"
 	"sync"
-	"time"
 )
 
 type Wal struct {
@@ -21,11 +20,6 @@ type Wal struct {
 
 func (w *Wal) Init(dir string) *skipList.SkipList {
 	log.Println("Nil-KV : Loading wal.log...")
-	start := time.Now()
-	defer func() {
-		elapse := time.Since(start)
-		log.Println("Nil-KV : Loaded wal.log,Consumption of time : ", elapse)
-	}()
 
 	walPath := path.Join(dir, "wal.log")
 	f, err := os.OpenFile(walPath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
